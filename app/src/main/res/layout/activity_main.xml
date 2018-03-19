@@ -10,39 +10,15 @@
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginEnd="153dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="62dp"
         android:ems="10"
         android:inputType="time"
         android:text="17:00"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="17:00" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="time"
-        android:text="18:00"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="118dp"
-        tools:text="18:00" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:ems="10"
-        android:inputType="time"
-        android:text="19:00"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="174dp"
-        tools:text="19:00" />
 </android.support.constraint.ConstraintLayout>
