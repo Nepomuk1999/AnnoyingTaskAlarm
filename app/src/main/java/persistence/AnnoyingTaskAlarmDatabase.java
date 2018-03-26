@@ -5,6 +5,9 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by Christoph Bauer on 26.03.2018.
  *
@@ -28,8 +31,20 @@ public abstract class AnnoyingTaskAlarmDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     AnnoyingTaskAlarmDatabase.class,
                     "AnnoyingTaskAlarmDatabase").build();
+            fillDatabase(INSTANCE);
         }
         return INSTANCE;
+    }
+
+    private static void fillDatabase(AnnoyingTaskAlarmDatabase INSTANCE) {
+        List<Task> tasks = new LinkedList<>();
+        Task task1 = new Task();
+        task1.setQuestion("15+13");
+        task1.setCorrectAnswer("28");
+
+        Task task2 = new Task();
+        task1.setQuestion("1+13");
+        task1.setCorrectAnswer("14");
     }
 
 }
