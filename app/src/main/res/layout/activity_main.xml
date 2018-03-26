@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.home.annoyingtaskalarm.MainActivity">
-
-    <EditText
-        android:id="@+id/editText"
+    android:background="#D1C4E9"
+    android:orientation="vertical" >
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_start"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="153dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="62dp"
-        android:ems="10"
-        android:inputType="time"
-        android:text="17:00"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="17:00" />
-
-</android.support.constraint.ConstraintLayout>
+        android:layout_gravity="center"
+        android:textColor="#FF8A80"
+        android:textSize="100sp"
+        android:id="@+id/msg1"/>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_stop"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#4CAF50"
+        android:textSize="50sp"
+        android:id="@+id/msg2"/>
+</LinearLayout>
