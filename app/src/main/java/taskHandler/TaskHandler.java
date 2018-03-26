@@ -17,8 +17,6 @@ public class TaskHandler {
         }
     }
 
-    //test
-
     //TODO implement different tasks
     public String getTaskAsString(){
         return "1+1=";
