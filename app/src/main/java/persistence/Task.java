@@ -18,14 +18,15 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Task {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "taskId")
     private int id;
 
     @ColumnInfo(name = "Question")
     private String question;
 
-    @ColumnInfo(name = "RightAnswer")
-    private String rightAnswer;
+    @ColumnInfo(name = "CorrectAnswer")
+    private String correctAnswer;
 
     @ColumnInfo(name = "WrongAnswerA")
     private String wrongAnswerA;
@@ -52,12 +53,12 @@ public class Task {
         this.question = question;
     }
 
-    public String getRightAnswer() {
-        return rightAnswer;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setRightAnswer(String rightAnswere) {
-        this.rightAnswer = rightAnswere;
+    public void setCorrectAnswer(String rightAnswere) {
+        this.correctAnswer = rightAnswere;
     }
 
     public String getWrongAnswerA() {
