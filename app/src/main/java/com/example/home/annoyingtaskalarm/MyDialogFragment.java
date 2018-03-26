@@ -1,4 +1,4 @@
-/**
+package com.example.home.annoyingtaskalarm; /**
  * Created by smithY on 26.03.2018.
  */
 
@@ -36,6 +36,6 @@ public class MyDialogFragment extends DialogFragment {
                 handler.sendMessage(msg);
             }
         };
-        return new TimePickerDialog(getActivity(), listener, timeHour, timeMinute, false);
+        return new TimePickerDialog(getActivity(), listener, timeHour, timeMinute, true);
     }
 }
