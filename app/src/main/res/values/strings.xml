@@ -1,3 +1,3 @@
 <resources>
-    <string name="app_name">Task Alarm</string>
+    <string name="app_name" translatable="false">Task Alarm</string>
 </resources>
