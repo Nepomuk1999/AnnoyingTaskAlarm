@@ -44,12 +44,8 @@ public class TaskHandler {
     }
 
     public Task getNextTask(){
-        if (tasks.size() == taskCounter-1){
-            taskCounter = 0;
-        }
-        currentTask = tasks.get(taskCounter);
-
-        taskCounter++;
+        currentTask = annoyingTaskAlarmDatabase.taskDao().getNext();
+        annoyingTaskAlarmDatabase.taskDao().updateTime(currentTask.getId(), (int)System.currentTimeMillis());
         return currentTask;
     }
 

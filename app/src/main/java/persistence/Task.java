@@ -22,6 +22,9 @@ public class Task {
     @ColumnInfo(name = "taskId")
     private int id;
 
+    @ColumnInfo(name = "lastUsed")
+    private int lastUsed;
+
     @ColumnInfo(name = "Question")
     private String question;
 
@@ -85,4 +88,11 @@ public class Task {
         this.wrongAnswerC = wrongAnswereC;
     }
 
+    public int getLastUsed() {
+        return lastUsed;
+    }
+
+    public void setLastUsed(int lastUsed) {
+        this.lastUsed = lastUsed;
+    }
 }
