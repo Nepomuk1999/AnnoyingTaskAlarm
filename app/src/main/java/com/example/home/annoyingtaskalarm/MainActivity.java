@@ -8,11 +8,8 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import taskHandler.TaskHandler;
 
-import persistence.AnnoyingTaskAlarmDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,16 +24,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //taskHandler.getInstance();
         System.out.println("in onCreate!!!!");
-        //taskHandler.getAllTasks(this);
-        //System.out.println("got tasks");
-        showContent();
-        // setup the table
 
-      // testTable = (TableLayout) findViewById(R.id.dynamicTest);
-      // testTable.setStretchAllColumns(true);
-      //  showAllAlarms();
+        //showContent();
+
+        addNewAlarm();
 
     }
 
@@ -46,21 +38,9 @@ public class MainActivity extends AppCompatActivity {
         appPropperlyClosed = true;
     }
 
-    public void showAllAlarms() {
-
-        System.out.println("Works!!!!");
-        //Intent intent = getIntent();
-
-    }
-
     public void showContent() {
-        /*Intent intent = new Intent(this, TaskHandler.class);
-        TextView editText = (TextView) findViewById(R.id.txtTest);
-        String message = taskHandler.getNextTask().getQuestion();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-        */
-        System.out.println("Taskhandler: " + taskHandler.getInstance());
+
+        /*System.out.println("Taskhandler: " + taskHandler.getInstance());
         Intent intent = getIntent();
         taskHandler.getAllTasks(this);
         String message = taskHandler.getNextTask().getQuestion();
@@ -69,5 +49,12 @@ public class MainActivity extends AppCompatActivity {
         String question = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.editText);
         textView.setText(question);
+        */
+    }
+
+    public void addNewAlarm() {
+        Intent intent = new Intent(this, MainAlarmActivity.class);
+        startActivity(intent);
+        setContentView(R.layout.alarmactivity_main);
     }
 }
