@@ -24,7 +24,7 @@ public interface TaskDao {
     @Query("SELECT * FROM task")
     List<Task> getAll();
 
-    @Query("SELECT * FROM task WHERE MIN(lastUsed)")
+    @Query("SELECT * FROM task WHERE lastUsed = (SELECT min(lastUsed) FROM task)")
     Task getNext();
 
     @Query("UPDATE task set lastUsed = :newTime where taskId = :id")
