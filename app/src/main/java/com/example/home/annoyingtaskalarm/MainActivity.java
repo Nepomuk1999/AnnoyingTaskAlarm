@@ -3,12 +3,8 @@ package com.example.home.annoyingtaskalarm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TableLayout;
-import android.widget.TextView;
-
 import taskHandler.TaskHandler;
+
 
 
 
