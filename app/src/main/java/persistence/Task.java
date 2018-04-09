@@ -85,7 +85,4 @@ public class Task {
         this.wrongAnswerC = wrongAnswereC;
     }
 
-
-
-
 }

@@ -2,6 +2,7 @@ package taskHandler;
 
 import android.content.Context;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import persistence.AnnoyingTaskAlarmDatabase;
@@ -21,8 +22,8 @@ import persistence.Task;
 public class TaskHandler {
 
     private TaskHandler instance;
-    private AnnoyingTaskAlarmDatabase annoyingTaskAlarmDatabase;
-    private List<Task> tasks;
+    private AnnoyingTaskAlarmDatabase annoyingTaskAlarmDatabase ;
+    private List<Task> tasks = new LinkedList<>();
     private int taskCounter = 0;
     private Task currentTask;
 
@@ -33,15 +34,13 @@ public class TaskHandler {
         return instance;
     }
 
-    public List<Task> getAllTasks (Context context){
+    public void getAllTasks (Context context){
         if (annoyingTaskAlarmDatabase == null){
-            AnnoyingTaskAlarmDatabase check=
             annoyingTaskAlarmDatabase = AnnoyingTaskAlarmDatabase.getInstance(context);
         }
         if (tasks.isEmpty()){
             tasks = annoyingTaskAlarmDatabase.taskDao().getAll();
         }
-        return tasks;
     }
 
     public Task getNextTask(){
