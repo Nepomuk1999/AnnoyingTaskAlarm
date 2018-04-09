@@ -31,20 +31,31 @@ public abstract class AnnoyingTaskAlarmDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     AnnoyingTaskAlarmDatabase.class,
                     "AnnoyingTaskAlarmDatabase").build();
-            fillDatabase(INSTANCE);
+            fillDatabase();
         }
         return INSTANCE;
     }
 
-    private static void fillDatabase(AnnoyingTaskAlarmDatabase INSTANCE) {
+    private static void addTask(Task task){
+        INSTANCE.taskDao().insertAll(task);
+    }
+
+    private static void fillDatabase() {
         List<Task> tasks = new LinkedList<>();
+
         Task task1 = new Task();
         task1.setQuestion("15+13");
         task1.setCorrectAnswer("28");
 
+        addTask(task1);
+
         Task task2 = new Task();
         task1.setQuestion("1+13");
         task1.setCorrectAnswer("14");
+
+        addTask(task2);
+
+
     }
 
 }
