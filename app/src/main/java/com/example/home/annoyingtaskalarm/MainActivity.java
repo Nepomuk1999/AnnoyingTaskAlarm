@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Question is: " + message);
         intent.putExtra(EXTRA_MESSAGE, message);
         String question = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        TextView textView = findViewById(R.id.txtViewTest);
+        TextView textView = findViewById(R.id.editText);
         textView.setText(question);
     }
 }

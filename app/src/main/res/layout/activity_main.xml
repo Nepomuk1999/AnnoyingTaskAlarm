@@ -12,13 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="153dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="time"
-        android:text="17:00"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="17:00" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
