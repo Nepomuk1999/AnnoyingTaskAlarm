@@ -31,7 +31,7 @@ public abstract class AnnoyingTaskAlarmDatabase extends RoomDatabase {
         if (INSTANCE == null){
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     AnnoyingTaskAlarmDatabase.class,
-                    "AnnoyingTaskAlarmDatabase").allowMainThreadQueries().build();
+                    "AnnoyingTaskAlarmDatabase").build();
             fillDatabase();
         }
         return INSTANCE;
@@ -55,7 +55,6 @@ public abstract class AnnoyingTaskAlarmDatabase extends RoomDatabase {
         task2.setQuestion("1+13");
         task2.setCorrectAnswer("14");
         task2.setLastUsed((int)System.currentTimeMillis());
-
 
         addTask(task2);
 

@@ -2,8 +2,11 @@ package taskHandler;
 
 import android.content.Context;
 
+import com.example.home.annoyingtaskalarm.NextQuestionAsyncTask;
+
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import persistence.AnnoyingTaskAlarmDatabase;
 import persistence.Task;
@@ -43,6 +46,23 @@ public class TaskHandler {
         }
     }
 
+    public Task nextTask() {
+        NextQuestionAsyncTask nextQuestionAsyncTask = NextQuestionAsyncTask.getInstance();
+        Task temp = null;
+        try {
+            temp = nextQuestionAsyncTask.execute(this).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+
+    /**
+     * Call to get the task witch was not used the longest, and updates the use to current time in milsec
+     * @return task witch was not used the longest
+     */
     public Task getNextTask(){
         currentTask = annoyingTaskAlarmDatabase.taskDao().getNext();
         annoyingTaskAlarmDatabase.taskDao().updateTime(currentTask.getId(), (int)System.currentTimeMillis());
