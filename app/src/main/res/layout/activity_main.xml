@@ -6,15 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.home.annoyingtaskalarm.MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="153dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:inputType="time"
+    <ListView
+        android:id="@+id/lViewAllAlarms"
+        android:layout_width="0dp"
+        android:layout_height="429dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
-        android:text="+"
         android:onClick="addNewAlarm"
+        android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
