@@ -25,15 +25,15 @@ public class MyDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle bundle = getArguments();
-        timeHour = bundle.getInt(MyConstants.HOUR);
-        timeMinute = bundle.getInt(MyConstants.MINUTE);
+        timeHour = bundle.getInt(MyAlarmConstants.HOUR);
+        timeMinute = bundle.getInt(MyAlarmConstants.MINUTE);
         TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 timeHour = hourOfDay;
                 timeMinute = minute;
                 Bundle b = new Bundle();
-                b.putInt(MyConstants.HOUR, timeHour);
-                b.putInt(MyConstants.MINUTE, timeMinute);
+                b.putInt(MyAlarmConstants.HOUR, timeHour);
+                b.putInt(MyAlarmConstants.MINUTE, timeMinute);
                 Message msg = new Message();
                 msg.setData(b);
                 handler.sendMessage(msg);
