@@ -1,8 +1,12 @@
 package com.example.home.annoyingtaskalarm;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
+
+import persistence.Task;
 import taskHandler.TaskHandler;
 
 
@@ -36,16 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void showContent() {
 
-        /*System.out.println("Taskhandler: " + taskHandler.getInstance());
+        System.out.println("Taskhandler: " + taskHandler.getInstance());
         Intent intent = getIntent();
-        taskHandler.getAllTasks(this);
-        String message = taskHandler.getNextTask().getQuestion();
+        Task currentTask = taskHandler.nextTask();
+        String message =currentTask.getQuestion();
         System.out.println("Question is: " + message);
         intent.putExtra(EXTRA_MESSAGE, message);
         String question = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.editText);
         textView.setText(question);
-        */
+
     }
 
     public void addNewAlarm() {

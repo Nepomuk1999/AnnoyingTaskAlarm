@@ -56,7 +56,6 @@ public abstract class AnnoyingTaskAlarmDatabase extends RoomDatabase {
         task2.setCorrectAnswer("14");
         task2.setLastUsed((int)System.currentTimeMillis());
 
-
         addTask(task2);
 
 
