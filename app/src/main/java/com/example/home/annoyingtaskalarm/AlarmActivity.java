@@ -16,30 +16,34 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class MainAlarmActivity extends FragmentActivity{
+public class AlarmActivity extends FragmentActivity{
 
     private static int timeHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     private static int timeMinute = Calendar.getInstance().get(Calendar.MINUTE);
-    TextView textView1;
+    private TextView alarmTime;
     private static TextView textView2;
     public static TextView getTextView2() {
         return textView2;
     }
-    AlarmManager alarmManager;
+
+    private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
+    private String curTime;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarmactivity_main);
-        textView1 = (TextView)findViewById(R.id.msg1);
-        textView1.setText(timeHour + ":" + timeMinute);
+        alarmTime = (TextView)findViewById(R.id.showTimeDigital);
+        curTime = String.format("%02d:%02d", timeHour, timeMinute);
+        alarmTime.setText(curTime);
+
         textView2 = (TextView)findViewById(R.id.msg2);
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Intent myIntent = new Intent(MainAlarmActivity.this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(MainAlarmActivity.this, 0, myIntent, 0);
+        Intent myIntent = new Intent(AlarmActivity.this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 0, myIntent, 0);
 
         OnClickListener listener1 = new OnClickListener() {
             public void onClick(View view) {
@@ -56,24 +60,40 @@ public class MainAlarmActivity extends FragmentActivity{
             }
         };
 
-        Button btn1 = (Button)findViewById(R.id.button1);
-        btn1.setOnClickListener(listener1);
-        OnClickListener listener2 = new OnClickListener() {
-            public void onClick(View view) {
-                textView2.setText("");
-                cancelAlarm();
-            }
-        };
-        Button btn2 = (Button)findViewById(R.id.button2);
-        btn2.setOnClickListener(listener2);
+        Button btnSetAlarmTime = (Button)findViewById(R.id.btnSetAlarmTime);
+        btnSetAlarmTime.setOnClickListener(listener1);
+//        OnClickListener listener2 = new OnClickListener() {
+//            public void onClick(View view) {
+//                textView2.setText("");
+//                cancelAlarm();
+//            }
+//        };
+//        Button saveAlarm = (Button)findViewById(R.id.saveAlarm);
+//        saveAlarm.setOnClickListener(listener2);
+
+
     }
+
+    public void saveAlarmToList(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void deleteAlarmFromList(View view) {
+        textView2.setText("");
+        cancelAlarm();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     class MyHandler extends Handler {
         @Override
         public void handleMessage (Message msg){
             Bundle bundle = msg.getData();
             timeHour = bundle.getInt(MyConstants.HOUR);
             timeMinute = bundle.getInt(MyConstants.MINUTE);
-            textView1.setText(timeHour + ":" + timeMinute);
+            curTime = String.format("%02d:%02d", timeHour, timeMinute);
+            alarmTime.setText(curTime);
             setAlarm();
         }
     }

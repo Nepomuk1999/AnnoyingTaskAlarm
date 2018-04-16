@@ -1,14 +1,11 @@
 package com.example.home.annoyingtaskalarm;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.ListView;
 
-import persistence.Task;
 import android.view.View;
-import android.widget.Button;
 
 import taskHandler.TaskHandler;
 
@@ -27,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("in onCreate!!!!");
+        //showAllAlarms();
 
-        //showContent();
     }
 
     @Override
@@ -37,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         appPropperlyClosed = true;
     }
 
-    public void showContent() {
+    /*public void showAllAlarms() {
+
 
         System.out.println("Taskhandler: " + taskHandler.getInstance());
         Intent intent = getIntent();
@@ -49,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.editText);
         textView.setText(question);
 
-    }
+
+    }*/
 
     public void addNewAlarm(View view) {
-        Intent intent = new Intent(this, MainAlarmActivity.class);
+        Intent intent = new Intent(this, AlarmActivity.class);
         startActivity(intent);
     }
 }
