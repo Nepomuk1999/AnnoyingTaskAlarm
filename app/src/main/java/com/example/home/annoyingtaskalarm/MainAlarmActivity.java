@@ -27,6 +27,7 @@ public class MainAlarmActivity extends FragmentActivity{
     }
     AlarmManager alarmManager;
     private PendingIntent pendingIntent;
+    private String curTime;
 
 
     @Override
@@ -34,7 +35,11 @@ public class MainAlarmActivity extends FragmentActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarmactivity_main);
         textView1 = (TextView)findViewById(R.id.msg1);
-        textView1.setText(timeHour + ":" + timeMinute);
+
+        curTime = String.format("%02d:%02d", timeHour, timeMinute);
+        textView1.setText(curTime);
+       // textView1.setText(timeHour + ":" + timeMinute);
+
         textView2 = (TextView)findViewById(R.id.msg2);
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -73,7 +78,8 @@ public class MainAlarmActivity extends FragmentActivity{
             Bundle bundle = msg.getData();
             timeHour = bundle.getInt(MyConstants.HOUR);
             timeMinute = bundle.getInt(MyConstants.MINUTE);
-            textView1.setText(timeHour + ":" + timeMinute);
+            curTime = String.format("%02d:%02d", timeHour, timeMinute);
+            textView1.setText(curTime);
             setAlarm();
         }
     }

@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Task Alarm</string>
-    <string name="btn_start"> Start </string>
+    <string name="btn_start"> SET </string>
     <string name="btn_stop"> Stop </string>
 </resources>
