@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import persistence.Task;
-import taskHandler.TaskHandler;
+import android.view.View;
+import android.widget.Button;
 
+import taskHandler.TaskHandler;
 
 
 
@@ -21,15 +23,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("in onCreate!!!!");
 
         //showContent();
-
-        addNewAlarm();
-
     }
 
     @Override
@@ -52,9 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void addNewAlarm() {
+    public void addNewAlarm(View view) {
         Intent intent = new Intent(this, MainAlarmActivity.class);
         startActivity(intent);
-        setContentView(R.layout.alarmactivity_main);
     }
 }
