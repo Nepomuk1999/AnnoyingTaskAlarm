@@ -3,6 +3,7 @@ package com.example.home.annoyingtaskalarm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.annoyingtaskalarm.MESSAGE";
     private String[] allAlarms;
     private ArrayAdapter<String> adapter;
+    private ListView lViewAlarms;
     //private TableLayout testTable;
 
 
@@ -32,11 +34,24 @@ public class MainActivity extends AppCompatActivity {
         //get all Alarms from db
         allAlarms = new String[] {"alarm 1", "alarm 2", "alarm 3"};
 
-        ListView lv = (ListView) findViewById(R.id.lViewAllAlarms);
+        lViewAlarms = (ListView) findViewById(R.id.lViewAllAlarms);
 
         // possible to get all alarms from db by using the method
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allAlarms);
 
+        lViewAlarms.setAdapter(adapter);
+
+//        lViewAlarms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getActivity(), AlarmActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        return view;);
+//
 
         //showContent();
         //showAllAlarms();

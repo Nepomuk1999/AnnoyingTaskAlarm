@@ -62,6 +62,7 @@ public class AlarmActivity extends FragmentActivity{
             public void onClick(View view) {
                 textView2.setText("");
                 cancelAlarm();
+                deleteAlarm(view);
             }
         };
         Button cancelAlarm = (Button) findViewById(R.id.cancelAlarm);
@@ -134,10 +135,8 @@ public class AlarmActivity extends FragmentActivity{
     }
 
     // delete alarm
-    public void deleteAlarmFromList(View view) {
-//        textView2.setText("");
-//        cancelAlarm();
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
+    public void deleteAlarm(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
