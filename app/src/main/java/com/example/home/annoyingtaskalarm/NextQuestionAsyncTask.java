@@ -1,11 +1,9 @@
 package com.example.home.annoyingtaskalarm;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
-import persistence.AnnoyingTaskAlarmDatabase;
-import persistence.Task;
 import handler.TaskHandler;
+import persistence.Task;
 
 public class NextQuestionAsyncTask extends AsyncTask<TaskHandler, Task, Task> {
 

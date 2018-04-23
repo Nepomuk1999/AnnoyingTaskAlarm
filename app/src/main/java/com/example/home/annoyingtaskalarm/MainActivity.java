@@ -15,7 +15,6 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     private boolean appPropperlyClosed;
-    //private TaskHandler taskHandler = new TaskHandler().getInstance(this);
     public static final String EXTRA_MESSAGE = "com.example.annoyingtaskalarm.MESSAGE";
     private String[] allAlarms;
     private ArrayAdapter<String> adapter;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         initializer.initializeDB(getApplicationContext());
         initializer.populateAsync(getApplicationContext());
         //get all Alarms from db
-        allAlarms = new String[] {"alarm 1", "alarm 2", "alarm 3"};
+
 
         lViewAlarms = (ListView) findViewById(R.id.lViewAllAlarms);
 

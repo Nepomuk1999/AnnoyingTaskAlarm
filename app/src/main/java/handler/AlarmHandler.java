@@ -6,6 +6,9 @@ import com.example.home.annoyingtaskalarm.GetAlarmStringsAsynchTask;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import persistence.AlarmEntity;
 import persistence.AnnoyingTaskAlarmDatabase;
@@ -24,11 +27,17 @@ public class AlarmHandler {
     }
 
     public List<AlarmEntity> getAllAlarms(){
-        List<AlarmEntity> alrms = new LinkedList<>();
-
-
-
-
-        return alrms;
+        List<AlarmEntity> alarms = new LinkedList<>();
+        GetAlarmStringsAsynchTask getAlarmStringsAsynchTask = new GetAlarmStringsAsynchTask();
+        try {
+            alarms = getAlarmStringsAsynchTask.execute(this).get(1000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        return alarms;
     }
 }
