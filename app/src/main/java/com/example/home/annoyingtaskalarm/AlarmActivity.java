@@ -56,14 +56,15 @@ public class AlarmActivity extends FragmentActivity{
 
         Button btnSetAlarmTime = (Button)findViewById(R.id.btnSetAlarmTime);
         btnSetAlarmTime.setOnClickListener(listener1);
+
         OnClickListener listener2 = new OnClickListener() {
             public void onClick(View view) {
                 textView2.setText("");
                 cancelAlarm();
             }
         };
-        Button saveAlarm = (Button)findViewById(R.id.saveAlarm);
-        saveAlarm.setOnClickListener(listener2);
+        Button cancelAlarm = (Button)findViewById(R.id.cancelAlarm);
+        cancelAlarm.setOnClickListener(listener2);
     }
 
     public static TextView getTextView2() {
