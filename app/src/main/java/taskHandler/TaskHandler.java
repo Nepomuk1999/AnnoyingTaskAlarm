@@ -7,6 +7,8 @@ import com.example.home.annoyingtaskalarm.NextQuestionAsyncTask;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import persistence.AnnoyingTaskAlarmDatabase;
 import persistence.Task;
@@ -24,15 +26,16 @@ import persistence.Task;
 
 public class TaskHandler {
 
-    private TaskHandler instance;
-    private AnnoyingTaskAlarmDatabase annoyingTaskAlarmDatabase ;
+    private static TaskHandler instance;
+    private static AnnoyingTaskAlarmDatabase annoyingTaskAlarmDatabase ;
     private List<Task> tasks = new LinkedList<>();
     private int taskCounter = 0;
     private Task currentTask;
 
-    public TaskHandler getInstance(){
+    public static TaskHandler getInstance(Context context){
         if (instance == null){
             instance = new TaskHandler();
+            annoyingTaskAlarmDatabase = AnnoyingTaskAlarmDatabase.getInstance(context);
         }
         return instance;
     }
@@ -46,14 +49,16 @@ public class TaskHandler {
         }
     }
 
-    public Task nextTask() {
-        NextQuestionAsyncTask nextQuestionAsyncTask = NextQuestionAsyncTask.getInstance();
-        Task temp = null;
+    public Task nextTask(Context context) {
+        NextQuestionAsyncTask nextQuestionAsyncTask = NextQuestionAsyncTask.getInstance(context);
+        Task temp = new Task();
         try {
-            temp = nextQuestionAsyncTask.execute(this).get();
+            temp = nextQuestionAsyncTask.execute(this).get(1000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
             e.printStackTrace();
         }
         return temp;
@@ -64,7 +69,9 @@ public class TaskHandler {
      * @return task witch was not used the longest
      */
     public Task getNextTask(){
-        currentTask = annoyingTaskAlarmDatabase.taskDao().getNext();
+        Task temp = annoyingTaskAlarmDatabase.taskDao().getNext();
+        currentTask = temp;
+
         annoyingTaskAlarmDatabase.taskDao().updateTime(currentTask.getId(), (int)System.currentTimeMillis());
         return currentTask;
     }
@@ -72,8 +79,6 @@ public class TaskHandler {
     public boolean checkAnswer(String answer){
         return currentTask.getCorrectAnswer().equals(answer);
     }
-
-
 
 
 }
