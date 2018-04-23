@@ -20,7 +20,7 @@ import java.util.List;
  *     \\
  */
 
-@Database(entities = {Task.class}, version = 1)
+@Database(entities = {Task.class, AlarmEntity.class}, version = 1)
 public abstract class AnnoyingTaskAlarmDatabase extends RoomDatabase {
 
     private static AnnoyingTaskAlarmDatabase INSTANCE;

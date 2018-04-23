@@ -1,4 +1,4 @@
-package taskHandler;
+package handler;
 
 import android.content.Context;
 
@@ -29,7 +29,6 @@ public class TaskHandler {
     private static TaskHandler instance;
     private static AnnoyingTaskAlarmDatabase annoyingTaskAlarmDatabase ;
     private List<Task> tasks = new LinkedList<>();
-    private int taskCounter = 0;
     private Task currentTask;
 
     public static TaskHandler getInstance(Context context){
@@ -50,7 +49,7 @@ public class TaskHandler {
     }
 
     public Task nextTask(Context context) {
-        NextQuestionAsyncTask nextQuestionAsyncTask = NextQuestionAsyncTask.getInstance(context);
+        NextQuestionAsyncTask  nextQuestionAsyncTask = new NextQuestionAsyncTask();
         Task temp = new Task();
         try {
             temp = nextQuestionAsyncTask.execute(this).get(1000, TimeUnit.MILLISECONDS);

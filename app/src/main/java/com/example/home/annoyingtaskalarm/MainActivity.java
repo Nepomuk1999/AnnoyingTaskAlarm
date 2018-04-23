@@ -6,13 +6,9 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import persistence.AnnoyingTaskAlarmDatabase;
 import persistence.DatabaseInitializer;
-import persistence.Task;
+
 import android.view.View;
-
-import taskHandler.TaskHandler;
-
 
 
 public class MainActivity extends AppCompatActivity {

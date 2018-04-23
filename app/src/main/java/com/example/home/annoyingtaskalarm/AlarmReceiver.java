@@ -7,8 +7,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
-import persistence.Task;
-import taskHandler.TaskHandler;
+import handler.TaskHandler;
 
 public class AlarmReceiver extends WakefulBroadcastReceiver{
 

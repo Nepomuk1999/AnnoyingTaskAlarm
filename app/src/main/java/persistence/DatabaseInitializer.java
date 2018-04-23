@@ -37,7 +37,6 @@ public class DatabaseInitializer {
 
 
     private static void populateWithData(AnnoyingTaskAlarmDatabase db) {
-        List<Task> tasks = new LinkedList<>();
 
         Task task1 = new Task();
         task1.setQuestion("15+13");

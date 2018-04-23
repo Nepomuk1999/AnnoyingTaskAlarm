@@ -10,5 +10,5 @@ import java.util.List;
 public interface AlarmDao {
 
     @Query("SELECT * FROM AlarmEntity")
-    List<Task> getAll();
+    List<AlarmEntity> getAll();
 }
