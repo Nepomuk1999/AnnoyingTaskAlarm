@@ -39,6 +39,7 @@ public class AlarmActivity extends FragmentActivity{
         Intent intent = new Intent(AlarmActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 0, intent, 0);
 
+        // listener for edit button -> sets/edits alarm
         OnClickListener listener1 = new OnClickListener() {
             public void onClick(View view) {
                 textView2.setText("");
@@ -53,18 +54,32 @@ public class AlarmActivity extends FragmentActivity{
                 transaction.commit();
             }
         };
-
-        Button btnSetAlarmTime = (Button)findViewById(R.id.btnSetAlarmTime);
+        Button btnSetAlarmTime = (Button) findViewById(R.id.btnSetAlarmTime);
         btnSetAlarmTime.setOnClickListener(listener1);
 
+        // listener for cancel button -> cancels alarm
         OnClickListener listener2 = new OnClickListener() {
             public void onClick(View view) {
                 textView2.setText("");
                 cancelAlarm();
             }
         };
-        Button cancelAlarm = (Button)findViewById(R.id.cancelAlarm);
+        Button cancelAlarm = (Button) findViewById(R.id.cancelAlarm);
         cancelAlarm.setOnClickListener(listener2);
+
+        // listener for save button
+        OnClickListener listener3 = new OnClickListener() {
+            public void onClick(View view) {
+                // TODO: Save alarm data to db here or in saveAlarmToList method
+
+                System.out.println("Index: 1" );
+                System.out.println("Time: " + curTime);
+
+                saveAlarmToList(view);
+            }
+        };
+        Button saveAlarm = (Button) findViewById(R.id.saveAlarm);
+        saveAlarm.setOnClickListener(listener3);
     }
 
     public static TextView getTextView2() {
