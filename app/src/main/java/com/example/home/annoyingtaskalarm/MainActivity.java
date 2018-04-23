@@ -3,6 +3,7 @@ package com.example.home.annoyingtaskalarm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import persistence.AnnoyingTaskAlarmDatabase;
@@ -19,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean appPropperlyClosed;
     //private TaskHandler taskHandler = new TaskHandler().getInstance(this);
     public static final String EXTRA_MESSAGE = "com.example.annoyingtaskalarm.MESSAGE";
-
+    private String[] allAlarms;
+    private ArrayAdapter<String> adapter;
     //private TableLayout testTable;
 
 
@@ -31,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
         DatabaseInitializer initializer = new DatabaseInitializer();
         initializer.initializeDB(getApplicationContext());
         initializer.populateAsync(getApplicationContext());
+        //get all Alarms from db
+        allAlarms = new String[] {"alarm 1", "alarm 2", "alarm 3"};
+
+        ListView lv = (ListView) findViewById(R.id.lViewAllAlarms);
+
+        // possible to get all alarms from db by using the method
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allAlarms);
+
+
         //showContent();
         //showAllAlarms();
 
@@ -42,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
         appPropperlyClosed = true;
     }
 
-    /*public void showAllAlarms() {
+    public void showAllAlarms() {
 
 
-        System.out.println("Taskhandler: " + taskHandler.getInstance());
+        /*System.out.println("Taskhandler: " + taskHandler.getInstance());
         Intent intent = getIntent();
         Task currentTask = taskHandler.nextTask(this);
         String message =currentTask.getQuestion();
@@ -54,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
         String question = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.editText);
         textView.setText(question);
+        */
 
 
-    }*/
+    }
 
     public void addNewAlarm(View view) {
         Intent intent = new Intent(this, AlarmActivity.class);
