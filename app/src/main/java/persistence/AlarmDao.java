@@ -17,7 +17,7 @@ public interface AlarmDao {
     void insertAll(AlarmEntity...alarms);
 
     @Query("UPDATE alarmentity set  time = :newTime where  alarmId = :id")
-    void updateTime(int id, int newTime);
+    void updateTime(int id, String newTime);
 
     @Query("SELECT COUNT(*) FROM AlarmEntity")
     int countEntries();

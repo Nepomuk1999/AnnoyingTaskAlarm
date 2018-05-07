@@ -47,11 +47,12 @@ public class AlarmHandler {
         return alarms;
     }
 
-    public void saveAlarm(){
-
-    }
 
     public static List<AlarmEntity> getAll() {
         return annoyingTaskAlarmDatabase.alarmDao().getAll();
+    }
+
+    public static void updateAlarm(AlarmEntity alarmEntity){
+        annoyingTaskAlarmDatabase.alarmDao().updateTime(alarmEntity.getId(), alarmEntity.getTime());
     }
 }
