@@ -17,18 +17,24 @@ public class AlarmHandler {
 
     private static AlarmHandler instance;
     private static AnnoyingTaskAlarmDatabase annoyingTaskAlarmDatabase ;
+    private static Context context;
 
     public static AlarmHandler getInstance(Context context){
         if (instance == null){
             instance = new AlarmHandler();
             annoyingTaskAlarmDatabase = AnnoyingTaskAlarmDatabase.getInstance(context);
+            setContext(context);
         }
         return instance;
     }
 
+    public static void setContext(Context context) {
+        AlarmHandler.context = context;
+    }
+
     public List<AlarmEntity> getAllAlarms(){
         List<AlarmEntity> alarms = new LinkedList<>();
-        GetAlarmStringsAsynchTask getAlarmStringsAsynchTask = new GetAlarmStringsAsynchTask();
+        GetAlarmStringsAsynchTask getAlarmStringsAsynchTask = new GetAlarmStringsAsynchTask(context);
         try {
             alarms = getAlarmStringsAsynchTask.execute(this).get(1000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {

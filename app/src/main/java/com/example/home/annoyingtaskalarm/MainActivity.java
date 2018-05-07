@@ -1,5 +1,6 @@
 package com.example.home.annoyingtaskalarm;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.annoyingtaskalarm.MESSAGE";
     private String[] allAlarms;
     private ArrayAdapter<String> adapter;
-    private ListView lViewAlarms;
+    private static ListView lViewAlarms;
     //private TableLayout testTable;
 
 
@@ -84,4 +85,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AlarmActivity.class);
         startActivity(intent);
     }
+
+
+
+    public static ListView getlViewAlarms() {
+        return lViewAlarms;
+    }
+
+
 }
