@@ -19,8 +19,8 @@ public class AlarmHandler {
     private static AnnoyingTaskAlarmDatabase annoyingTaskAlarmDatabase ;
     private static Context context;
 
-    public static AlarmHandler getInstance(Context context){
-        if (instance == null){
+    public static AlarmHandler getInstance(Context context) {
+        if (instance == null) {
             instance = new AlarmHandler();
             annoyingTaskAlarmDatabase = AnnoyingTaskAlarmDatabase.getInstance(context);
             setContext(context);
@@ -45,5 +45,9 @@ public class AlarmHandler {
             e.printStackTrace();
         }
         return alarms;
+    }
+
+    public void saveAlarm(){
+
     }
 }

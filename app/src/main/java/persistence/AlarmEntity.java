@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class AlarmEntity {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "taskId")
+    @ColumnInfo(name = "alarmId")
     private int id;
 
     @ColumnInfo(name = "Time")

@@ -34,9 +34,18 @@ public class DatabaseInitializer {
         db.taskDao().insertAll(task);
     }
 
+    private static void addAlarm(final AnnoyingTaskAlarmDatabase db, AlarmEntity alarm){
+        db.alarmDao().insertAll(alarm);
+    }
 
 
     private static void populateWithData(AnnoyingTaskAlarmDatabase db) {
+
+        for (int i = 0; i < 6; i++){
+            AlarmEntity alarm = new AlarmEntity();
+            alarm.setTime("00:00");
+            addAlarm(db, alarm);
+        }
 
         Task task1 = new Task();
         task1.setQuestion("15+13");
