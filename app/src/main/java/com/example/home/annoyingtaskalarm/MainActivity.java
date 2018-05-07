@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.annoyingtaskalarm.MESSAGE";
     private static ListView lViewAlarms;
     private AlarmHandler alarmHandler;
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<AlarmEntity> adapter;
     //private TableLayout testTable;
 
 
@@ -43,23 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
         alarmHandler = alarmHandler.getInstance(this.getApplicationContext());
         List<AlarmEntity> alarms = alarmHandler.getAllAlarms();
-        ArrayList<String> currentAlarms = new ArrayList<>();
-
-        for (AlarmEntity ae : alarms) {
-            currentAlarms.add(ae.getTime());
-        }
-
         ListView lViewAlarms = MainActivity.getlViewAlarms();
-
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, currentAlarms);
+        adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, alarms);
         lViewAlarms.setAdapter(adapter);
-
 
         lViewAlarms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), AlarmActivity.class);
-                intent.putExtra("id", adapter.getItemId(position));
+                intent.putExtra("alarm", adapter.getItemId(position));
                 startActivity(intent);
             }
         });
