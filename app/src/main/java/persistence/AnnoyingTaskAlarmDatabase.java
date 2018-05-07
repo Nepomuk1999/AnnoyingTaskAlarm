@@ -33,6 +33,8 @@ public abstract class AnnoyingTaskAlarmDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     AnnoyingTaskAlarmDatabase.class,
                     "AnnoyingTaskAlarmDatabase").build();
+            DatabaseInitializer initializer = DatabaseInitializer.getInstance();
+            initializer.initializeDB(context);
 
         }
         return INSTANCE;

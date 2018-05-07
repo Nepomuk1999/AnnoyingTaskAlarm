@@ -29,20 +29,10 @@ public class GetAlarmStringsAsynchTask extends AsyncTask<AlarmHandler, List<Alar
 
     @Override
     protected void onPostExecute(List<AlarmEntity> alarms){
-        if (alarms.isEmpty()){
-            AlarmEntity tempAlarm = new AlarmEntity();
-            tempAlarm.setId(0);
-            tempAlarm.setTime("No alarms have been saved!");
-        } else {
-            ArrayList<String> temp = new ArrayList<>();
-            for (AlarmEntity alarmEntity : alarms){
-                temp.add(alarmEntity.getTime());
-            }
-            String[] current = (String[]) temp.toArray();
-            ListView lViewAlarms = MainActivity.getlViewAlarms();
+        ListView lViewAlarms = MainActivity.getlViewAlarms();
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, current);
-            lViewAlarms.setAdapter(adapter);
-        }
+        ArrayAdapter<AlarmEntity> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, alarms);
+        lViewAlarms.setAdapter(adapter);
     }
+
 }

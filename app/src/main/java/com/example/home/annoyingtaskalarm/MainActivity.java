@@ -34,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("in onCreate!!!!");
-        DatabaseInitializer initializer = new DatabaseInitializer();
-        initializer.initializeDB(getApplicationContext());
-        initializer.populateAsync(getApplicationContext());
 
         lViewAlarms = (ListView) findViewById(R.id.lViewAllAlarms);
 
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allAlarms);
         //lViewAlarms.setAdapter(adapter);
 
-
+        alarmHandler = alarmHandler.getInstance(this.getApplicationContext());
         List<AlarmEntity> alarms = alarmHandler.getAllAlarms();
         ArrayList<String> currentAlarms = new ArrayList<>();
 
@@ -75,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         appPropperlyClosed = true;
+
     }
 
     public void showAllAlarms() {

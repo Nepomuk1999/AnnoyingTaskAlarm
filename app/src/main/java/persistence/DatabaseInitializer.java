@@ -9,22 +9,28 @@ import java.util.concurrent.ExecutionException;
 
 public class DatabaseInitializer {
 
+    public static DatabaseInitializer INSTANCE;
+    public boolean isPopulated = false;
+
+    public static DatabaseInitializer getInstance() {
+        if (INSTANCE == null){
+            INSTANCE = new DatabaseInitializer();
+        }
+        return INSTANCE;
+    }
+
     public void initializeDB(Context context){
-        InitializeDatabase db = new InitializeDatabase();
-        db.execute(context);
+        if (!isPopulated) {
+            InitializeDatabase db = new InitializeDatabase();
+            db.execute(context);
+            populateAsync(context);
+            isPopulated = true;
+        }
     }
 
 
-    public void populateAsync(Context context) {
-        InitializeDatabase db = new InitializeDatabase();
-        AnnoyingTaskAlarmDatabase atadb = null;
-        try {
-            atadb = db.execute(context).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+    private void populateAsync(Context context) {
+        AnnoyingTaskAlarmDatabase atadb = AnnoyingTaskAlarmDatabase.getInstance(context);
         PopulateDbAsync task = new PopulateDbAsync(atadb);
         task.execute();
     }
@@ -41,25 +47,28 @@ public class DatabaseInitializer {
 
     private static void populateWithData(AnnoyingTaskAlarmDatabase db) {
 
-        for (int i = 0; i < 6; i++){
-            AlarmEntity alarm = new AlarmEntity();
-            alarm.setTime("00:00");
-            addAlarm(db, alarm);
+        if(db.alarmDao().countEntries() == 0) {
+
+            for (int i = 0; i < 6; i++) {
+                AlarmEntity alarm = new AlarmEntity();
+                alarm.setTime("00:00");
+                addAlarm(db, alarm);
+            }
+
+            Task task1 = new Task();
+            task1.setQuestion("15+13");
+            task1.setCorrectAnswer("28");
+            task1.setLastUsed((int) System.currentTimeMillis());
+
+            addTask(db, task1);
+
+            Task task2 = new Task();
+            task2.setQuestion("1+13");
+            task2.setCorrectAnswer("14");
+            task2.setLastUsed((int) System.currentTimeMillis());
+
+            addTask(db, task2);
         }
-
-        Task task1 = new Task();
-        task1.setQuestion("15+13");
-        task1.setCorrectAnswer("28");
-        task1.setLastUsed((int)System.currentTimeMillis());
-
-        addTask(db, task1);
-
-        Task task2 = new Task();
-        task2.setQuestion("1+13");
-        task2.setCorrectAnswer("14");
-        task2.setLastUsed((int)System.currentTimeMillis());
-
-        addTask(db, task2);
     }
 
     private static class InitializeDatabase extends AsyncTask<Context, Void, AnnoyingTaskAlarmDatabase>{
