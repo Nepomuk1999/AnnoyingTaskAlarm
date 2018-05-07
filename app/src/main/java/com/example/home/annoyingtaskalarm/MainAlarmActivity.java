@@ -11,7 +11,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 
 public class AlarmActivity extends FragmentActivity{
@@ -20,14 +22,9 @@ public class AlarmActivity extends FragmentActivity{
     private static int timeMinute = Calendar.getInstance().get(Calendar.MINUTE);
     private TextView alarmTime;
     private static TextView textView2;
-    public static TextView getTextView2() {
-        return textView2;
-    }
-
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
     private String curTime;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,40 +33,58 @@ public class AlarmActivity extends FragmentActivity{
         alarmTime = (TextView)findViewById(R.id.showTimeDigital);
         curTime = String.format("%02d:%02d", timeHour, timeMinute);
         alarmTime.setText(curTime);
-
         textView2 = (TextView)findViewById(R.id.msg2);
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(AlarmActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 0, intent, 0);
 
-//        OnClickListener listener1 = new OnClickListener() {
-//            public void onClick(View view) {
-//                textView2.setText("");
-//                Bundle bundle = new Bundle();
-//                bundle.putInt(MyAlarmConstants.HOUR, timeHour);
-//                bundle.putInt(MyAlarmConstants.MINUTE, timeMinute);
-//                MyDialogFragment fragment = new MyDialogFragment(new MyHandler());
-//                fragment.setArguments(bundle);
-//                FragmentManager manager = getSupportFragmentManager();
-//                FragmentTransaction transaction = manager.beginTransaction();
-//                transaction.add(fragment, MyAlarmConstants.TIME_PICKER);
-//                transaction.commit();
-//            }
-//        };
+        // listener for edit button -> sets/edits alarm
+        OnClickListener listener1 = new OnClickListener() {
+            public void onClick(View view) {
+                textView2.setText("");
+                Bundle bundle = new Bundle();
+                bundle.putInt(MyAlarmConstants.HOUR, timeHour);
+                bundle.putInt(MyAlarmConstants.MINUTE, timeMinute);
+                MyDialogFragment fragment = new MyDialogFragment(new MyHandler());
+                fragment.setArguments(bundle);
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.add(fragment, MyAlarmConstants.TIME_PICKER);
+                transaction.commit();
+            }
+        };
+        Button btnSetAlarmTime = (Button) findViewById(R.id.btnSetAlarmTime);
+        btnSetAlarmTime.setOnClickListener(listener1);
 
-//        Button btnSetAlarmTime = (Button)findViewById(R.id.btnSetAlarmTime);
-//        btnSetAlarmTime.setOnClickListener(listener1);
-//        OnClickListener listener2 = new OnClickListener() {
-//            public void onClick(View view) {
-//                textView2.setText("");
-//                cancelAlarm();
-//            }
-//        };
-//        Button saveAlarm = (Button)findViewById(R.id.saveAlarm);
-//        saveAlarm.setOnClickListener(listener2);
+        // listener for cancel button -> cancels alarm
+        OnClickListener listener2 = new OnClickListener() {
+            public void onClick(View view) {
+                textView2.setText("");
+                cancelAlarm();
+                deleteAlarm(view);
+            }
+        };
+        Button cancelAlarm = (Button) findViewById(R.id.cancelAlarm);
+        cancelAlarm.setOnClickListener(listener2);
 
+        // listener for save button
+        OnClickListener listener3 = new OnClickListener() {
+            public void onClick(View view) {
+                // TODO: Save alarm data to db here or in saveAlarmToList method
 
+                System.out.println("Index: 1" );
+                System.out.println("Time: " + curTime);
+
+                saveAlarmToList(view);
+            }
+        };
+        Button saveAlarm = (Button) findViewById(R.id.saveAlarm);
+        saveAlarm.setOnClickListener(listener3);
+    }
+
+    public static TextView getTextView2() {
+        return textView2;
     }
 
     // set alarm time
@@ -83,21 +98,6 @@ public class AlarmActivity extends FragmentActivity{
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(fragment, MyAlarmConstants.TIME_PICKER);
         transaction.commit();
-    }
-
-    // save alarm
-    public void saveAlarmToList(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    // delete alarm
-    public void deleteAlarmFromList(View view) {
-        textView2.setText("");
-        cancelAlarm();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        //alarmManager.
     }
 
     class MyHandler extends Handler {
@@ -124,5 +124,20 @@ public class AlarmActivity extends FragmentActivity{
         if (alarmManager!= null) {
             alarmManager.cancel(pendingIntent);
         }
+    }
+
+    // save alarm
+    public void saveAlarmToList(View view) {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        //System.out.println(alarmManager);
+        //alarmManager.cancel(pendingIntent);
+    }
+
+    // delete alarm
+    public void deleteAlarm(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

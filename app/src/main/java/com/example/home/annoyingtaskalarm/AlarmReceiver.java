@@ -7,10 +7,14 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
+import handler.TaskHandler;
+
 public class AlarmReceiver extends WakefulBroadcastReceiver{
 
     public void onReceive(final Context context, Intent intent) {
-        AlarmActivity.getTextView2().setText("THIS IS A TEST!");
+        // POP-UP HERE!!!!!!!!!
+        TaskHandler taskHandler = TaskHandler.getInstance(context);
+        taskHandler.nextTask(context);
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
         ringtone.play();

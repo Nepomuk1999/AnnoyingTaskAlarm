@@ -2,23 +2,19 @@ package com.example.home.annoyingtaskalarm;
 
 import android.os.AsyncTask;
 
+import handler.TaskHandler;
 import persistence.Task;
-import taskHandler.TaskHandler;
 
-public class NextQuestionAsyncTask extends AsyncTask<TaskHandler, Void, Task> {
-
-    private static NextQuestionAsyncTask instance;
-
-    public static NextQuestionAsyncTask getInstance() {
-        if (instance == null){
-            instance = new NextQuestionAsyncTask();
-        }
-        return instance;
-    }
+public class NextQuestionAsyncTask extends AsyncTask<TaskHandler, Task, Task> {
 
     @Override
     protected Task doInBackground(TaskHandler... taskHandlers) {
         TaskHandler taskHandler = taskHandlers[0];
         return taskHandler.getNextTask();
+    }
+
+    @Override
+    protected void onPostExecute(Task task) {
+        AlarmActivity.getTextView2().setText(task.getQuestion());
     }
 }
