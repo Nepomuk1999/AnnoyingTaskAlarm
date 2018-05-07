@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import handler.AlarmHandler;
+import persistence.AlarmDao;
 import persistence.AlarmEntity;
 
 public class GetAlarmStringsAsynchTask extends AsyncTask<AlarmHandler, List<AlarmEntity>, List<AlarmEntity>> {
@@ -23,7 +24,8 @@ public class GetAlarmStringsAsynchTask extends AsyncTask<AlarmHandler, List<Alar
     @Override
     protected List<AlarmEntity> doInBackground(AlarmHandler... alarmHandlers) {
         AlarmHandler alarmHandler = alarmHandlers[0];
-        return alarmHandler.getAllAlarms();
+        List<AlarmEntity> alarms = AlarmHandler.getAll();
+        return alarms;
     }
 
     @Override

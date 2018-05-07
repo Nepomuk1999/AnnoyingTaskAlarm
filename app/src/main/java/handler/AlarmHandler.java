@@ -50,4 +50,8 @@ public class AlarmHandler {
     public void saveAlarm(){
 
     }
+
+    public static List<AlarmEntity> getAll() {
+        return annoyingTaskAlarmDatabase.alarmDao().getAll();
+    }
 }
