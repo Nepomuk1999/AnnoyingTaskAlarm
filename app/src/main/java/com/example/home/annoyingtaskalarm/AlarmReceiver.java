@@ -12,7 +12,6 @@ import handler.TaskHandler;
 public class AlarmReceiver extends WakefulBroadcastReceiver{
 
     public void onReceive(final Context context, Intent intent) {
-        // POP-UP HERE!!!!!!!!!
         TaskHandler taskHandler = TaskHandler.getInstance(context);
         taskHandler.nextTask(context);
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
