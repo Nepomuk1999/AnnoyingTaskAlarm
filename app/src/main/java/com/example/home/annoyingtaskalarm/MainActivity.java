@@ -53,11 +53,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), AlarmActivity.class);
                 intent.putExtra("alarm", adapter.getItemId(position));
                 startActivity(intent);
+
             }
         });
-
-        //showAllAlarms();
-
     }
 
     @Override
@@ -67,29 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void showAllAlarms() {
-
-
-        /*System.out.println("Taskhandler: " + taskHandler.getInstance());
-        Intent intent = getIntent();
-        Task currentTask = taskHandler.nextTask(this);
-        String message =currentTask.getQuestion();
-        System.out.println("Question is: " + message);
-        intent.putExtra(EXTRA_MESSAGE, message);
-        String question = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        TextView textView = findViewById(R.id.editText);
-        textView.setText(question);
-        */
-
-
-    }
-
     public void addNewAlarm(View view) {
         Intent intent = new Intent(this, AlarmActivity.class);
         startActivity(intent);
     }
-
-
 
     public static ListView getlViewAlarms() {
         return lViewAlarms;
