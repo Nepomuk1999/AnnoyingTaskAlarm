@@ -1,6 +1,7 @@
 package handler;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.example.home.annoyingtaskalarm.GetAlarmStringsAsynchTask;
 
@@ -52,7 +53,19 @@ public class AlarmHandler {
         return annoyingTaskAlarmDatabase.alarmDao().getAll();
     }
 
-    public static void updateAlarm(AlarmEntity alarmEntity){
-        annoyingTaskAlarmDatabase.alarmDao().updateTime(alarmEntity.getId(), alarmEntity.getTime());
+    public  void updateAlarm(AlarmEntity alarmEntity){
+        new UpdateAsynchTask().execute(alarmEntity);
+    }
+
+    public class UpdateAsynchTask extends AsyncTask<AlarmEntity, AnnoyingTaskAlarmDatabase, AlarmEntity>{
+
+
+        @Override
+        protected AlarmEntity doInBackground(AlarmEntity... alarmEntities) {
+            AlarmEntity entity = alarmEntities[0];
+            annoyingTaskAlarmDatabase.alarmDao().updateTime(entity.getId(), entity.getTime());
+
+            return null;
+        }
     }
 }

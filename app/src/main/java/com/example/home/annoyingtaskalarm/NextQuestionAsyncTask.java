@@ -15,6 +15,6 @@ public class NextQuestionAsyncTask extends AsyncTask<TaskHandler, Task, Task> {
 
     @Override
     protected void onPostExecute(Task task) {
-        AlarmActivity.getTextView2().setText(task.getQuestion());
+        EditAlarmActivity.getTextView2().setText(task.getQuestion());
     }
 }

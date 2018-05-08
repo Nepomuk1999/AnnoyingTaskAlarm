@@ -2,6 +2,7 @@ package com.example.home.annoyingtaskalarm;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import persistence.DatabaseInitializer;
 
 import android.view.View;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         lViewAlarms = (ListView) findViewById(R.id.lViewAllAlarms);
 
-        // possible to get all alarms from db by using the
-        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allAlarms);
-        //lViewAlarms.setAdapter(adapter);
 
         alarmHandler = alarmHandler.getInstance(this.getApplicationContext());
         List<AlarmEntity> alarms = alarmHandler.getAllAlarms();
@@ -50,12 +49,18 @@ public class MainActivity extends AppCompatActivity {
         lViewAlarms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), AlarmActivity.class);
-                intent.putExtra("alarm", adapter.getItemId(position));
+                Intent intent = new Intent(getApplicationContext(), EditAlarmActivity.class);
+                intent.putExtra("AlarmEntity",(Serializable) adapter.getItem(position));
                 startActivity(intent);
 
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
     }
 
     @Override
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addNewAlarm(View view) {
-        Intent intent = new Intent(this, AlarmActivity.class);
+        Intent intent = new Intent(this, EditAlarmActivity.class);
         startActivity(intent);
     }
 

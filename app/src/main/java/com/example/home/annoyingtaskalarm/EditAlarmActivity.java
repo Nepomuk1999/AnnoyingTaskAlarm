@@ -18,6 +18,7 @@ import java.util.Calendar;
 import handler.AlarmHandler;
 import persistence.AlarmEntity;
 
+
 public class EditAlarmActivity extends AppCompatActivity {
 
     private static int timeHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -28,27 +29,26 @@ public class EditAlarmActivity extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private String curTime;
     private AlarmHandler alarmHandler;
-    AlarmEntity alarmEntity;
+    public AlarmEntity alarmEntity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.editalarmactivity);
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent = getIntent();
         pendingIntent = PendingIntent.getBroadcast(EditAlarmActivity.this, 0, intent, 0);
-        Bundle b = intent.getExtras();
+        alarmEntity = (AlarmEntity) intent.getSerializableExtra("AlarmEntity");
         alarmTime = (TextView)findViewById(R.id.setTimeDigital);
         curTime = String.format("%02d:%02d", timeHour, timeMinute);
 
-        if(b != null) {
-            alarmEntity =(AlarmEntity) b.get("alarm");
-            alarmTime.setText(alarmEntity.getTime());
+        alarmTime.setText(alarmEntity.getTime());
 
-            alarmHandler.getInstance(getApplicationContext());
-        }
-
+        alarmHandler.getInstance(getApplicationContext());
+        System.out.println(alarmEntity.getId()+"--------"+ alarmEntity.getTime());
         textView2 = (TextView)findViewById(R.id.msg2);
 
         // listener for edit button -> sets/edits alarm
@@ -80,18 +80,18 @@ public class EditAlarmActivity extends AppCompatActivity {
         Button cancelAlarm = (Button) findViewById(R.id.cancelAlarm);
         cancelAlarm.setOnClickListener(listener2);
 
+
+        Button saveAlarm = (Button) findViewById(R.id.saveAlarm);
         // listener for save button
-        View.OnClickListener listener3 = new View.OnClickListener() {
+        saveAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
-
-                System.out.println("Index: 1" );
-                System.out.println("Time: " + curTime);
-
+                alarmEntity.setTime(curTime);
+                alarmHandler = AlarmHandler.getInstance(getApplicationContext());
+                alarmHandler.updateAlarm(alarmEntity);
                 saveAlarmToList(view);
             }
-        };
-        Button saveAlarm = (Button) findViewById(R.id.saveAlarm);
-        saveAlarm.setOnClickListener(listener3);
+        });
     }
 
     public static TextView getTextView2() {
@@ -139,12 +139,10 @@ public class EditAlarmActivity extends AppCompatActivity {
 
     // save alarm
     public void saveAlarmToList(View view) {
-
         Intent intent = new Intent(this, MainActivity.class);
         alarmHandler.updateAlarm(alarmEntity);
+        System.out.println("in save AlarmToList" + alarmEntity.getTime());
         startActivity(intent);
-        //System.out.println(alarmManager);
-        //alarmManager.cancel(pendingIntent);
     }
 
     // delete alarm
@@ -152,4 +150,7 @@ public class EditAlarmActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    }
+
+
+
+}
