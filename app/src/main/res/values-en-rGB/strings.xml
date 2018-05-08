@@ -3,4 +3,6 @@
     <string name="btnEdit">Edit</string>
     <string name="btnSave">Save</string>
     <string name="btnCancel">Cancel</string>
+    <string name="txtEnter">Enter answer here...</string>
+    <string name="btnSaveAnswer">Check answer</string>
 </resources>

@@ -3,4 +3,6 @@
     <string name="btnEdit">Bearbeiten</string>
     <string name="btnSave">Speichern</string>
     <string name="btnCancel">Abbrechen</string>
+    <string name="txtEnter">Antwort hier einfügen...</string>
+    <string name="btnSaveAnswer">Antwort prüfen</string>
 </resources>
