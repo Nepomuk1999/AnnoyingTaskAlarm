@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import handler.AlarmHandler;
@@ -53,6 +54,19 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("AlarmEntity",(Serializable) adapter.getItem(position));
                 startActivity(intent);
 
+            }
+        });
+
+        Button saveAlarm = (Button) findViewById(R.id.btnAddAlarm);
+        // listener for invite somebody over whatsapp button
+        saveAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Checkout my Annoying alarm APP!!!");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
             }
         });
     }
