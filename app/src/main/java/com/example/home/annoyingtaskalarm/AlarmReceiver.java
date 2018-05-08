@@ -19,6 +19,8 @@ public class AlarmReceiver extends WakefulBroadcastReceiver{
         Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
         ringtone.play();
         PopUpQuestion popUpQuestion = new PopUpQuestion(context);
+        Bundle bundle = new Bundle();
+        popUpQuestion.onCreateDialog(bundle);
 
     }
 }
