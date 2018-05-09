@@ -35,7 +35,6 @@ public class EditAlarmActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.editalarmactivity);
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
