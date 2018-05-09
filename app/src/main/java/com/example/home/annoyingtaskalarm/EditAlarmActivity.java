@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import handler.AlarmHandler;
 import persistence.AlarmEntity;
@@ -63,6 +64,14 @@ public class EditAlarmActivity extends AppCompatActivity {
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.add(fragment, MyAlarmConstants.TIME_PICKER);
                 transaction.commit();
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, timeHour);
+                calendar.set(Calendar.MINUTE, timeMinute);
+
+                Intent myIntent = new Intent(EditAlarmActivity.this, AlarmReceiver.class);
+                pendingIntent = PendingIntent.getBroadcast(EditAlarmActivity.this, 0, myIntent, 0);
+                alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
             }
         };
         Button btnSetAlarmTime = (Button) findViewById(R.id.btnSetAlarmTime);

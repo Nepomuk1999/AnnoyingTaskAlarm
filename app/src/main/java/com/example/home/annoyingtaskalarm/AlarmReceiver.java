@@ -1,10 +1,12 @@
 package com.example.home.annoyingtaskalarm;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
 import handler.TaskHandler;
@@ -17,20 +19,23 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
         TaskHandler taskHandler = TaskHandler.getInstance(context);
         taskHandler.nextTask(context);
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        if (uri == null) {
+            uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        }
         Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
         ringtone.play();
 
         // pass context here to display question in popupQuestion-class?
-        openDialog();
+        openDialog(context);
 
         // to check the answer from the dialog we can use answerFromDialog and compare this with the db answer here!!
     }
 
-    public void openDialog() {
+    public void openDialog(Context context) {
         PopupDialog popupDialog = new PopupDialog();
-
+//        FragmentManager fragmentManager = activity.getFragmentManager();
         // TODO: we need getSupportFragmentManager() method so that popupQuestion will work!!!
-        //popupQuestion.show(getSupportFragmentManager(), "answerQuestion");
+//        popupDialog.show(fragmentManager, "answerQuestion");
     }
 
     @Override
