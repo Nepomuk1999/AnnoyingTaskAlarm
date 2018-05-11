@@ -9,7 +9,7 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 
 import handler.TaskHandler;
 
-public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDialog.PopupDialogListener {
+public class AlarmReceiver extends WakefulBroadcastReceiver {
 
     private String answerFromDialog;
     private static Ringtone ringtone;
@@ -37,12 +37,4 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
     public static void stopRingtone(){
         ringtone.stop();
     }
-
-
-
-    @Override
-    public void sendAnswer(String answer) {
-        answerFromDialog = answer;
-    }
-
 }
