@@ -9,12 +9,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import handler.AlarmHandler;
+import handler.TaskHandler;
+import persistence.Task;
 
 public class QuestionActivity extends AppCompatActivity {
 
     private EditText editTextAnswer;
     private TextView showQuestion;
     private Button btnAnswer;
+    private Task currentTask;
+    private TaskHandler taskHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,9 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         // get Alarmentity and insert Question here!!!
-        //showQuestion.setText();
+        taskHandler = TaskHandler.getInstance(getApplicationContext());
+        currentTask = taskHandler.nextTask(getApplicationContext());
+
 
     }
 
@@ -45,9 +51,12 @@ public class QuestionActivity extends AppCompatActivity {
         String answer = editTextAnswer.getText().toString();
 
         //check anwer here!!!
+        if(taskHandler.checkAnswer(answer)){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }else{
 
-        // if ok then go back to main view
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        }
+
     }
 }

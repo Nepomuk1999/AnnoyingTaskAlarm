@@ -46,7 +46,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
         AppCompatActivity activity = (AppCompatActivity) context;
         //FragmentManager fragmenManager = new FragmentManager();
         // TODO: we need getSupportFragmentManager() method so that popupQuestion will work!!!
-        //popupDialog.show(fragmenManager.get, "answerQuestion");
+        popupDialog.show(activity.getSupportFragmentManager(), "answerQuestion");
 
 
     }
