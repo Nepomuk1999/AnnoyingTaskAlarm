@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
@@ -31,12 +32,16 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
         // to check the answer from the dialog we can use answerFromDialog and compare this with the db answer here!!
     }
 
+
+
     public void openDialog(Context context) {
         PopupDialog popupDialog = new PopupDialog();
-        Activity activity = (Activity) context;
-        FragmentManager fragmentManager = activity.getChildFragmentManager();
+        FragmentActivity activity = (FragmentActivity) context;
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
         // TODO: we need getSupportFragmentManager() method so that popupQuestion will work!!!
-        popupDialog.show(, "answerQuestion");
+        popupDialog.show(fragmentManager, "answerQuestion");
+
+
     }
 
     @Override
