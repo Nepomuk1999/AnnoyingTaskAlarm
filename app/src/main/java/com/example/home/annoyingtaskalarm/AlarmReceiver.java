@@ -1,13 +1,14 @@
 package com.example.home.annoyingtaskalarm;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+
+import android.support.v7.app.AppCompatActivity;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
 import handler.TaskHandler;
@@ -27,18 +28,25 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
         ringtone.play();
 
         // pass context here to display question in popupQuestion-class?
-        openDialog(context);
+        //openDialog(context);
+        openQuestion(context);
 
         // to check the answer from the dialog we can use answerFromDialog and compare this with the db answer here!!
+
     }
 
-
+    public void openQuestion(Context context) {
+        Intent intent = new Intent(context, QuestionActivity.class);
+        AppCompatActivity activity = new AppCompatActivity();
+        activity.startActivity(intent);
+    }
 
     public void openDialog(Context context) {
         PopupDialog popupDialog = new PopupDialog();
-        FragmentActivity activity = (FragmentActivity) context;
+        AppCompatActivity activity = (AppCompatActivity) context;
+        //FragmentManager fragmenManager = new FragmentManager();
         // TODO: we need getSupportFragmentManager() method so that popupQuestion will work!!!
-        popupDialog.show(activity.getSupportFragmentManager(), "answerQuestion");
+        //popupDialog.show(fragmenManager.get, "answerQuestion");
 
 
     }
