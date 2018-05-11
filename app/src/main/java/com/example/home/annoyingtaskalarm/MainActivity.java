@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private static ListView lViewAlarms;
     private AlarmHandler alarmHandler;
     private ArrayAdapter<AlarmEntity> adapter;
-    //private TableLayout testTable;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
