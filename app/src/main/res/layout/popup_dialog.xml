@@ -28,4 +28,12 @@
         android:hint="@string/txtEnter"
         android:inputType="text" />
 
+    <Button
+        android:id="@+id/btnQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="214dp"
+        android:text="@string/btnSaveAnswer" />
 </RelativeLayout>
