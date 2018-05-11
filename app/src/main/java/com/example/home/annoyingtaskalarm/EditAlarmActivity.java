@@ -12,13 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import handler.AlarmHandler;
 import persistence.AlarmEntity;
-
 
 public class EditAlarmActivity extends AppCompatActivity {
 
@@ -35,7 +31,6 @@ public class EditAlarmActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.editalarmactivity);
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -81,7 +76,6 @@ public class EditAlarmActivity extends AppCompatActivity {
         Button cancelAlarm = (Button) findViewById(R.id.cancelAlarm);
         cancelAlarm.setOnClickListener(listener2);
 
-
         Button saveAlarm = (Button) findViewById(R.id.saveAlarm);
         // listener for save button
         saveAlarm.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +118,7 @@ public class EditAlarmActivity extends AppCompatActivity {
         }
     }
 
+    // set alarm and alarm manager
     private void setAlarm(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, timeHour);
@@ -159,7 +154,4 @@ public class EditAlarmActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-
-
 }

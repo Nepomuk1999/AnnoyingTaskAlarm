@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="btnInvite">Teilen</string>
     <string name="btnEdit">Bearbeiten</string>
     <string name="btnSave">Speichern</string>
     <string name="btnCancel">Abbrechen</string>

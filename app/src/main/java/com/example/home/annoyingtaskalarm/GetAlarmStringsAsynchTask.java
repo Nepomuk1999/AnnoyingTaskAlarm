@@ -4,10 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import handler.AlarmHandler;
 import persistence.AlarmEntity;
 
@@ -18,7 +15,6 @@ public class GetAlarmStringsAsynchTask extends AsyncTask<AlarmHandler, List<Alar
     public GetAlarmStringsAsynchTask(Context context){
         this.context = context;
     }
-
 
     @Override
     protected List<AlarmEntity> doInBackground(AlarmHandler... alarmHandlers) {
@@ -34,5 +30,4 @@ public class GetAlarmStringsAsynchTask extends AsyncTask<AlarmHandler, List<Alar
         ArrayAdapter<AlarmEntity> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, alarms);
         lViewAlarms.setAdapter(adapter);
     }
-
 }

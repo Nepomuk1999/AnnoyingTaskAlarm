@@ -3,10 +3,6 @@ package persistence;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 public class DatabaseInitializer {
 
     public static DatabaseInitializer INSTANCE;
@@ -28,13 +24,11 @@ public class DatabaseInitializer {
         }
     }
 
-
     private void populateAsync(Context context) {
         AnnoyingTaskAlarmDatabase atadb = AnnoyingTaskAlarmDatabase.getInstance(context);
         PopulateDbAsync task = new PopulateDbAsync(atadb);
         task.execute();
     }
-
 
     private static void addTask(final AnnoyingTaskAlarmDatabase db, Task task){
         db.taskDao().insertAll(task);
@@ -44,9 +38,7 @@ public class DatabaseInitializer {
         db.alarmDao().insertAll(alarm);
     }
 
-
     private static void populateWithData(AnnoyingTaskAlarmDatabase db) {
-
         if(db.alarmDao().countEntries() == 0) {
 
             for (int i = 0; i < 6; i++) {
@@ -72,14 +64,12 @@ public class DatabaseInitializer {
     }
 
     private static class InitializeDatabase extends AsyncTask<Context, Void, AnnoyingTaskAlarmDatabase>{
-
         @Override
         protected AnnoyingTaskAlarmDatabase doInBackground(Context... contexts) {
             AnnoyingTaskAlarmDatabase db = AnnoyingTaskAlarmDatabase.getInstance(contexts[0]);
             return db;
         }
     }
-
 
     private static class PopulateDbAsync extends AsyncTask<Context, Void, Void> {
 

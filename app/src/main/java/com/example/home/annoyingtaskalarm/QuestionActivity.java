@@ -2,17 +2,12 @@ package com.example.home.annoyingtaskalarm;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import handler.AlarmHandler;
 import handler.TaskHandler;
 import persistence.Task;
 
@@ -49,7 +44,6 @@ public class QuestionActivity extends AppCompatActivity {
         taskHandler = TaskHandler.getInstance(getApplicationContext());
         currentTask = taskHandler.nextTask(getApplicationContext());
         showQuestion.setText(currentTask.getQuestion());
-
     }
 
     public void checkAnswer(View view) {

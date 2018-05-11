@@ -7,11 +7,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
-import handler.TaskHandler;
-
 public class AlarmReceiver extends WakefulBroadcastReceiver {
 
-    private String answerFromDialog;
     private static Ringtone ringtone;
 
     public void onReceive(final Context context, Intent intent) {
@@ -23,8 +20,6 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
         ringtone.play();
 
         openQuestion(context);
-
-
     }
 
     public void openQuestion(Context context) {
