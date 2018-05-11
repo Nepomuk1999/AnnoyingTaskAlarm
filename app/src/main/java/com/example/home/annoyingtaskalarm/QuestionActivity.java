@@ -1,6 +1,10 @@
 package com.example.home.annoyingtaskalarm;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -51,9 +55,10 @@ public class QuestionActivity extends AppCompatActivity {
     public void checkAnswer(View view) {
         // check answer with question answer
         String answer = editTextAnswer.getText().toString();
-
+        Context context = getApplicationContext();
         //check anwer here!!!
         if(taskHandler.checkAnswer(answer)){
+            AlarmReceiver.stopRingtone();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }else{

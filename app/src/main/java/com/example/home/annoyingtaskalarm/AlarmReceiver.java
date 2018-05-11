@@ -1,14 +1,10 @@
 package com.example.home.annoyingtaskalarm;
 
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-
-import android.support.v7.app.AppCompatActivity;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
 import handler.TaskHandler;
@@ -16,6 +12,7 @@ import handler.TaskHandler;
 public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDialog.PopupDialogListener {
 
     private String answerFromDialog;
+    private static Ringtone ringtone;
 
     public void onReceive(final Context context, Intent intent) {
         TaskHandler taskHandler = TaskHandler.getInstance(context);
@@ -24,7 +21,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
         if (uri == null) {
             uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         }
-        Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
+        ringtone = RingtoneManager.getRingtone(context, uri);
         ringtone.play();
 
         // pass context here to display question in popupQuestion-class?
@@ -36,20 +33,17 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
     }
 
     public void openQuestion(Context context) {
-        Intent intent = new Intent(context, QuestionActivity.class);
-        AppCompatActivity activity = new AppCompatActivity();
-        activity.startActivity(intent);
+        Intent i = new Intent();
+        i.setClassName("com.example.home.annoyingtaskalarm", "com.example.home.annoyingtaskalarm.QuestionActivity");
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
     }
 
-    public void openDialog(Context context) {
-        PopupDialog popupDialog = new PopupDialog();
-        AppCompatActivity activity = (AppCompatActivity) context;
-        //FragmentManager fragmenManager = new FragmentManager();
-        // TODO: we need getSupportFragmentManager() method so that popupQuestion will work!!!
-        popupDialog.show(activity.getSupportFragmentManager(), "answerQuestion");
-
-
+    public static void stopRingtone(){
+        ringtone.stop();
     }
+
+
 
     @Override
     public void sendAnswer(String answer) {
