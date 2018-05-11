@@ -16,6 +16,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     private EditText editTextAnswer;
     private TextView showQuestion;
+    private TextView failedText;
     private Button btnAnswer;
     private Task currentTask;
     private TaskHandler taskHandler;
@@ -29,6 +30,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         editTextAnswer = (EditText) findViewById(R.id.alarmAnswer);
         showQuestion = (TextView) findViewById(R.id.alarmQuestion);
+        failedText = (TextView) findViewById(R.id.failedText);
         btnAnswer = (Button) findViewById(R.id.btnQuestion);
 
         // listener for check button
@@ -55,8 +57,7 @@ public class QuestionActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }else{
-
+            failedText.setText("Wrong! Falsch! Wrong! Falsch!");
         }
-
     }
 }

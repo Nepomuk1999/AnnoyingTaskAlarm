@@ -28,13 +28,24 @@
         android:hint="@string/txtEnter"
         android:inputType="text" />
 
+    <TextView
+        android:id="@+id/failedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="216dp"
+        android:textColor="#4CAF50"
+        android:textSize="35sp" />
+
     <Button
         android:id="@+id/btnQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="214dp"
+        android:layout_marginBottom="143dp"
         android:onClick="checkAnswer"
         android:text="@string/btnSaveAnswer" />
 </RelativeLayout>
