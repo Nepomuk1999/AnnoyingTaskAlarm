@@ -42,7 +42,7 @@ public class QuestionActivity extends AppCompatActivity {
         // get Alarmentity and insert Question here!!!
         taskHandler = TaskHandler.getInstance(getApplicationContext());
         currentTask = taskHandler.nextTask(getApplicationContext());
-
+        showQuestion.setText(currentTask.getQuestion());
 
     }
 
