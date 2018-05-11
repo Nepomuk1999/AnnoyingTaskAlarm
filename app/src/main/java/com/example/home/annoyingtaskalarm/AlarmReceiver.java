@@ -15,8 +15,6 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
     private static Ringtone ringtone;
 
     public void onReceive(final Context context, Intent intent) {
-        TaskHandler taskHandler = TaskHandler.getInstance(context);
-        taskHandler.nextTask(context);
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         if (uri == null) {
             uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -24,11 +22,8 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
         ringtone = RingtoneManager.getRingtone(context, uri);
         ringtone.play();
 
-        // pass context here to display question in popupQuestion-class?
-        //openDialog(context);
         openQuestion(context);
 
-        // to check the answer from the dialog we can use answerFromDialog and compare this with the db answer here!!
 
     }
 
