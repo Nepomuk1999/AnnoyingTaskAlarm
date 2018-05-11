@@ -9,9 +9,8 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 
 import handler.TaskHandler;
 
-public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDialog.PopupDialogListener {
+public class AlarmReceiver extends WakefulBroadcastReceiver {
 
-    private String answerFromDialog;
     private static Ringtone ringtone;
 
     public void onReceive(final Context context, Intent intent) {
@@ -24,12 +23,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
         ringtone = RingtoneManager.getRingtone(context, uri);
         ringtone.play();
 
-        // pass context here to display question in popupQuestion-class?
-        //openDialog(context);
         openQuestion(context);
-
-        // to check the answer from the dialog we can use answerFromDialog and compare this with the db answer here!!
-
     }
 
     public void openQuestion(Context context) {
@@ -42,12 +36,4 @@ public class AlarmReceiver extends WakefulBroadcastReceiver implements PopupDial
     public static void stopRingtone(){
         ringtone.stop();
     }
-
-
-
-    @Override
-    public void sendAnswer(String answer) {
-        answerFromDialog = answer;
-    }
-
 }
