@@ -33,4 +33,8 @@ public class QuestionActivity extends AppCompatActivity {
 
         // check answer with question answer
     }
+
+    public void checkAnswer() {
+
+    }
 }
