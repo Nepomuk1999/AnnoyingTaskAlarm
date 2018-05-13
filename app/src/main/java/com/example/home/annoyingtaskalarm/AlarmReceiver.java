@@ -2,6 +2,8 @@ package com.example.home.annoyingtaskalarm;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -13,14 +15,28 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
 
     private String answerFromDialog;
     private static Ringtone ringtone;
+    private static MediaPlayer mMediaPlayer;
 
     public void onReceive(final Context context, Intent intent) {
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         if (uri == null) {
             uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         }
-        ringtone = RingtoneManager.getRingtone(context, uri);
-        ringtone.play();
+
+
+        try {
+            Uri alert =  RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            mMediaPlayer = new MediaPlayer();
+            mMediaPlayer.setDataSource(context, alert);
+            final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            if (audioManager.getStreamVolume(AudioManager.STREAM_RING) != 0) {
+                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
+                mMediaPlayer.setLooping(true);
+                mMediaPlayer.prepare();
+                mMediaPlayer.start();
+            }
+        } catch(Exception e) {
+        }
 
         openQuestion(context);
 
@@ -35,6 +51,6 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
     }
 
     public static void stopRingtone(){
-        ringtone.stop();
+        mMediaPlayer.stop();
     }
 }
