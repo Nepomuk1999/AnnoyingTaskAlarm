@@ -62,44 +62,44 @@ public class DatabaseInitializer {
             addTask(db, task2);
 
             Task task3 = new Task();
-            task2.setQuestion("25-8");
-            task2.setCorrectAnswer("17");
-            task2.setLastUsed((int) System.currentTimeMillis());
+            task3.setQuestion("25-8");
+            task3.setCorrectAnswer("17");
+            task3.setLastUsed((int) System.currentTimeMillis());
 
             addTask(db, task3);
 
             Task task4 = new Task();
-            task2.setQuestion("60+40");
-            task2.setCorrectAnswer("100");
-            task2.setLastUsed((int) System.currentTimeMillis());
+            task4.setQuestion("60+40");
+            task4.setCorrectAnswer("100");
+            task4.setLastUsed((int) System.currentTimeMillis());
 
             addTask(db, task4);
 
             Task task5 = new Task();
-            task2.setQuestion("78-34");
-            task2.setCorrectAnswer("44");
-            task2.setLastUsed((int) System.currentTimeMillis());
+            task5.setQuestion("78-34");
+            task5.setCorrectAnswer("44");
+            task5.setLastUsed((int) System.currentTimeMillis());
 
             addTask(db, task5);
 
             Task task6 = new Task();
-            task2.setQuestion("89+5");
-            task2.setCorrectAnswer("94");
-            task2.setLastUsed((int) System.currentTimeMillis());
+            task6.setQuestion("89+5");
+            task6.setCorrectAnswer("94");
+            task6.setLastUsed((int) System.currentTimeMillis());
 
             addTask(db, task6);
 
             Task task7 = new Task();
-            task2.setQuestion("98-75+12-5");
-            task2.setCorrectAnswer("30");
-            task2.setLastUsed((int) System.currentTimeMillis());
+            task7.setQuestion("98-75+12-5");
+            task7.setCorrectAnswer("30");
+            task7.setLastUsed((int) System.currentTimeMillis());
 
             addTask(db, task7);
 
             Task task8 = new Task();
-            task2.setQuestion("30+50-28-3+19");
-            task2.setCorrectAnswer("68");
-            task2.setLastUsed((int) System.currentTimeMillis());
+            task8.setQuestion("30+50-28-3+19");
+            task8.setCorrectAnswer("68");
+            task8.setLastUsed((int) System.currentTimeMillis());
 
             addTask(db, task8);
         }
