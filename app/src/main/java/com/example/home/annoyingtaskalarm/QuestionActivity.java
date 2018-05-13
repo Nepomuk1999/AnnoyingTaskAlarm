@@ -56,7 +56,6 @@ public class QuestionActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }else{
-            AlarmReceiver.stopRingtone();
             failedText.setText("Wrong! Falsch! Wrong! Falsch!");
         }
     }
