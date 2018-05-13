@@ -9,11 +9,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
-import handler.TaskHandler;
-
 public class AlarmReceiver extends WakefulBroadcastReceiver {
 
-    private String answerFromDialog;
     private static Ringtone ringtone;
     private static MediaPlayer mMediaPlayer;
 
@@ -39,8 +36,6 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
         }
 
         openQuestion(context);
-
-
     }
 
     public void openQuestion(Context context) {

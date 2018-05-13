@@ -1,36 +1,25 @@
 package com.example.home.annoyingtaskalarm;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import handler.AlarmHandler;
-import handler.TaskHandler;
 import persistence.AlarmEntity;
-import persistence.DatabaseInitializer;
-
 import android.view.View;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private boolean appPropperlyClosed;
-    public static final String EXTRA_MESSAGE = "com.example.annoyingtaskalarm.MESSAGE";
     private static ListView lViewAlarms;
     private AlarmHandler alarmHandler;
     private ArrayAdapter<AlarmEntity> adapter;
-    //private TableLayout testTable;
-
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -39,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("in onCreate!!!!");
 
         lViewAlarms = (ListView) findViewById(R.id.lViewAllAlarms);
-
 
         alarmHandler = alarmHandler.getInstance(this.getApplicationContext());
         List<AlarmEntity> alarms = alarmHandler.getAllAlarms();
@@ -57,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button saveAlarm = (Button) findViewById(R.id.btnAddAlarm);
+        Button btnInvite = (Button) findViewById(R.id.btnInvite);
         // listener for invite somebody over whatsapp button
-        saveAlarm.setOnClickListener(new View.OnClickListener() {
+        btnInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent sendIntent = new Intent();
@@ -74,14 +62,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
         appPropperlyClosed = true;
-
     }
 
     public void addNewAlarm(View view) {
@@ -92,6 +78,4 @@ public class MainActivity extends AppCompatActivity {
     public static ListView getlViewAlarms() {
         return lViewAlarms;
     }
-
-
 }

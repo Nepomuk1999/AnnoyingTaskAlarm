@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Annoying Task Alarm</string>
+    <string name="btnInvite">Teilen</string>
     <string name="btnEdit">Bearbeiten</string>
     <string name="btnSave">Speichern</string>
     <string name="btnCancel">Abbrechen</string>
