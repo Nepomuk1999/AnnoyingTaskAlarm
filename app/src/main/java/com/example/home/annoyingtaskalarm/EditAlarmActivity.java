@@ -141,7 +141,7 @@ public class EditAlarmActivity extends AppCompatActivity {
 
         Intent myIntent = new Intent(EditAlarmActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(EditAlarmActivity.this, 0, myIntent, 0);
-        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
         Intent intent = new Intent(this, MainActivity.class);
         alarmHandler.updateAlarm(alarmEntity);
